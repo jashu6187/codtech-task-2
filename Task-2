@@ -1,0 +1,79 @@
+/**/Verilog FSM Design:
+module simple_fsm(
+    input clk,
+    input reset,
+    output reg state_out
+);
+
+// Define states
+parameter S0 = 2'b00;
+parameter S1 = 2'b01;
+parameter S2 = 2'b10;
+
+// State register
+reg [1:0] state;
+
+// State transition logic
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        state <= S0;
+    end else begin
+        case(state)
+            S0: state <= S1;
+            S1: state <= S2;
+            S2: state <= S0;
+            default: state <= S0;
+        endcase
+    end
+end
+
+// Output logic
+always @(*) begin
+    case(state)
+        S0: state_out = 1'b0;
+        S1: state_out = 1'b1;
+        S2: state_out = 1'b0;
+        default: state_out = 1'b0;
+    endcase
+end
+
+endmodule
+/**/ Testbench for FSM:
+module tb_simple_fsm;
+
+reg clk, reset;
+wire state_out;
+
+// Instantiate the FSM module
+simple_fsm fsm_inst(
+    .clk(clk),
+    .reset(reset),
+    .state_out(state_out)
+);
+
+// Clock generation
+always begin
+    #5 clk = ~clk;
+end
+
+// Reset generation
+initial begin
+    reset = 1'b1;
+    #10 reset = 1'b0;
+end
+
+// Stimulus generation
+initial begin
+    #20;
+    $display("State at time 20: %b", state_out);
+    
+    #10;
+    $display("State at time 30: %b", state_out);
+    
+    #10;
+    $display("State at time 40: %b", state_out);
+    
+    $finish;
+end
+
+endmodule
