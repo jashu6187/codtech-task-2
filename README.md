@@ -1,1 +1,9 @@
+Name:OBULANAYAKULAGARI NAGA JASWANTH
+Company:CODTECH IT SOLUTIONS
+ID:CT6WDS130
+Domain:VLSI
+Duration:JUNE 2024 to 17Th JULY 2024”
+Mentor:SRAVANI GOUNI
+Over view of the project
+code
 
