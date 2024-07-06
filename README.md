@@ -85,4 +85,4 @@ initial begin <br>
 end <br>
 
 endmodule <br>
-![]()
+![](https://github.com/jashu6187/codtech-task-2/blob/main/Screenshot%202024-07-06%20101336.png)
